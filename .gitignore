@@ -1,0 +1,16 @@
+.vscode
+.terraform
+__pycache__
+.mypy_cache
+.pytest_cache
+temp
+.env
+
+# Terraform dot files
+.terraform
+.terraformrc
+**/.terraform/*
+.terraform.d
+*.tfstate
+*.tfstate.*
+secret.tfvars

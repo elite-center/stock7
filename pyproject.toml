@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "crawler-finlab"
+name = "stock7"
 version = "0.1.0"
 description = ""
 authors = ["bangyuwen <bangyuwen@gmail.com>"]
 readme = "README.md"
-packages = [{include = "crawler_finlab"}]
+packages = [{include = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"

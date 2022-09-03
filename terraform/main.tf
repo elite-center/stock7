@@ -12,8 +12,8 @@ data "google_compute_default_service_account" "default" {
 
 data "archive_file" "source" {
   type        = "zip"
-  source_dir  = "../src/crawler-finlab"
-  output_path = "/tmp/finlab-source.zip"
+  source_dir  = "../src"
+  output_path = ".temp/stock7.zip"
 }
 
 resource "google_storage_bucket" "bucket" {
@@ -23,15 +23,15 @@ resource "google_storage_bucket" "bucket" {
 }
 
 resource "google_storage_bucket_object" "object" {
-  name   = "finlab-source.zip"
+  name   = "stock7-source.zip"
   bucket = google_storage_bucket.bucket.name
   source = data.archive_file.source.output_path
 }
 
 resource "google_cloudfunctions2_function" "function" {
-  name        = "finlab"
+  name        = "stock7"
   location    = "us-central1"
-  description = "finlab crawler"
+  description = "stock7 crawler"
 
   build_config {
     runtime     = "python310"
@@ -65,8 +65,8 @@ output "function_uri" {
 resource "google_cloud_scheduler_job" "job" {
   project          = local.project
   region           = google_cloudfunctions2_function.function.location
-  name             = "finmind"
-  description      = "finmind"
+  name             = "stock7"
+  description      = "stock7"
   schedule         = "0 0,10 * * *"
   time_zone        = "UTC"
   attempt_deadline = "320s"

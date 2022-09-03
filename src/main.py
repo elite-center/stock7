@@ -12,9 +12,10 @@ from loguru import logger
 FINLAB_TOKEN = os.environ["FINLAB_TOKEN"]
 TG_TOKEN = os.environ["TG_TOKEN"]
 
+os.mkdir(".temp")
 
 def fetch_conference() -> pd.DataFrame:
-    cache_path = "temp/investors_conference.csv"
+    cache_path = ".temp/investors_conference.csv"
     if os.path.isfile(cache_path):
         info = pd.read_csv(cache_path)
     else:
@@ -25,7 +26,7 @@ def fetch_conference() -> pd.DataFrame:
 
 
 def fetch_shareholders_meeting() -> pd.DataFrame:
-    cache_path = "temp/shareholders_meeting.csv"
+    cache_path = ".temp/shareholders_meeting.csv"
     if os.path.isfile(cache_path):
         info = pd.read_csv(cache_path)
     else:
